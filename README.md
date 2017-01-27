@@ -6,7 +6,7 @@ Biolock API is API interface for training and testing ECG data for authenticatio
 
 
 Available API:
-    - **[Register API key](#register)**  
+    - **[Register API key](#register)**
     - **[Upload data for train](#Train-data)** 
     - **[Upload data for test](#Test-data)** 
     - **[Train your network](#Train-network)**
@@ -37,7 +37,7 @@ $ curl -X POST http://10.128.97.196:1111/register  -d 'name=test&email=test@test
 - @upload -CSV file with your ECG data for user which should be authenticated.
  
 ```sh
-curl -X POST --form upload=@/home/thavryl/ecg2/tarikTrain.csv http://localhost:1111/addTrainUserData?apikey=c6qp3p4i6uulf39ms9f5u1ps6v
+curl -X POST --form upload=@/home/thavryl/ecg2/tarikTrain.csv http://10.128.97.196:1111/addTrainUserData?apikey=c6qp3p4i6uulf39ms9f5u1ps6v
 ```
 sample response
 
@@ -51,7 +51,7 @@ sample response
 - @upload -CSV file with your ECG data for user which will be tested.
  
 ```sh
-curl -X POST --form upload=@/home/thavryl/ecg2/tarikTest.csv http://localhost:1111/addTestUserData?apikey=c6qp3p4i6uulf39ms9f5u1ps6v
+curl -X POST --form upload=@/home/thavryl/ecg2/tarikTest.csv http://10.128.97.196:1111/addTestUserData?apikey=c6qp3p4i6uulf39ms9f5u1ps6v
 ```
 sample response
 
@@ -65,7 +65,7 @@ sample response
 - @apikey -your valid api key.
     
 ```sh
-    curl -X POST http://localhost:1111/trainNetworkForAPIKey?apikey=c6qp3p4i6uulf39ms9f5u1ps6v
+    curl -X POST http://10.128.97.196:1111/trainNetworkForAPIKey?apikey=c6qp3p4i6uulf39ms9f5u1ps6v
 ```
 
 - Note training process might take about 1 minute
@@ -81,7 +81,7 @@ sample response
 - @apikey -your valid api key.
 
 ```sh
-  curl -X POST   http://localhost:1111/cleanTrainUserData?apikey=c6qp3p4i6uulf39ms9f5u1ps6v
+  curl -X POST   http://10.128.97.196:1111/cleanTrainUserData?apikey=c6qp3p4i6uulf39ms9f5u1ps6v
 ```
 
 Sample response
@@ -95,7 +95,7 @@ Sample response
 - @apikey -your valid api key.
 
 ```sh
-  curl -X POST   http://localhost:1111/cleanTestUserData?apikey=c6qp3p4i6uulf39ms9f5u1ps6v
+  curl -X POST   http://10.128.97.196:1111/cleanTestUserData?apikey=c6qp3p4i6uulf39ms9f5u1ps6v
 ```
 
 Sample response
@@ -111,7 +111,7 @@ Sample response
 
 
 ```sh
-    curl -X POST http://localhost:1111/validateUser?apikey=c6qp3p4i6uulf39ms9f5u1ps6v
+    curl -X POST http://10.128.97.196:1111/validateUser?apikey=c6qp3p4i6uulf39ms9f5u1ps6v
 ```
 Sample response
 ```sh
