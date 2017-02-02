@@ -30,7 +30,7 @@ $ curl -X POST http://34.198.199.171:1111/register  -d 'name=test&email=test@tes
 ```
   Sample response
 ```sh
-{"Status":"Ok","apikey":"c6qp3p4i6uulf39ms9f5u1ps6v"}
+{"Status":"Ok","apikey":"c6qp3p4i6uulf39ms9f5u1ps6v","Accuracy":"0.93"}
 ```
 
 ## Enroll
@@ -71,7 +71,7 @@ curl -X POST --form upload=@/home/user/ecg/testuser.csv http://34.198.199.171:11
 sample response
 
 ```sh
-{"Status":"Ok","Message":"pass"}  //user didn`t match
+{"Status":"Ok","Message":"pass","Accuracy":"0.93"}  //user didn`t match
 or
-{"Status":"Ok","Message":"fail"}  //user match
+{"Status":"Ok","Message":"fail","Accuracy":"0.23"}  //user match
 ```
