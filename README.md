@@ -8,8 +8,8 @@ Biolock API is API interface for training and testing ECG data for authenticatio
 Available API:
 
 * [Register API key](#register)
-* [Enroll user](#enroll-user-data)
-* [Verify test data](#verify-test-data)
+* [Enroll user](#enroll)
+* [Verify test data](#verify)
     
 
 
@@ -33,7 +33,7 @@ $ curl -X POST http://34.198.199.171:1111/register  -d 'name=test&email=test@tes
 {"Status":"Ok","APIKey":"c6qp3p4i6uulf39ms9f5u1ps6v"}
 ```
 
-## Enroll user data
+## Enroll
 
 Enroll endpoint can be used to train the system to recognize specific user on his/her ECG data. The ECG sample with range of 1000 - 5000 beats is required to get better accuracy. ECG data should be put in CSV file, where each line represent value in millivolts. Sampling rate should be provided as a parameter to the call. The Enroll action can take from 30 seconds to several minutes to complete depending on server load and data size.
 
@@ -47,7 +47,7 @@ Enroll endpoint can be used to train the system to recognize specific user on hi
 Sample request
 
 ```sh
-curl -X POST --form upload=@/home/thavryl/ecg2/tarikTrain.csv http://10.128.97.196:1111/addTrainUserData?apikey=c6qp3p4i6uulf39ms9f5u1ps6v
+curl -X POST --form upload=@/home/thavryl/ecg2/tarikTrain.csv http://10.128.97.196:1111/enroll?apikey=c6qp3p4i6uulf39ms9f5u1ps6v
 ```
 sample response
 
@@ -55,7 +55,7 @@ sample response
 {"Status":"Ok","Message":"Model trained"}
 ```
 
-## Verify test data
+## Verify 
 
 Verify endpoint allows testing user ECG (similar format as for Enroll endpoint), as authentication modality. As a result, validation result (yes/no) and matching probability is returned.
 
