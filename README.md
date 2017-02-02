@@ -8,8 +8,8 @@ Biolock API is API interface for training and testing ECG data for authenticatio
 Available API:
 
 * [Register API key](#register)
-* [Enroll user](#enroll)
-* [Verify test data](#verify)
+* [Enroll ](#enroll)
+* [Verify ](#verify)
     
 
 
@@ -30,7 +30,7 @@ $ curl -X POST http://34.198.199.171:1111/register  -d 'name=test&email=test@tes
 ```
   Sample response
 ```sh
-{"Status":"Ok","APIKey":"c6qp3p4i6uulf39ms9f5u1ps6v"}
+{"Status":"Ok","apikey":"c6qp3p4i6uulf39ms9f5u1ps6v"}
 ```
 
 ## Enroll
@@ -47,7 +47,7 @@ Enroll endpoint can be used to train the system to recognize specific user on hi
 Sample request
 
 ```sh
-curl -X POST --form upload=@/home/thavryl/ecg2/tarikTrain.csv http://10.128.97.196:1111/enroll?apikey=c6qp3p4i6uulf39ms9f5u1ps6v
+curl -X POST --form upload=@/home/user/ecg/user.csv http://34.198.199.171::1111/enroll?apikey=c6qp3p4i6uulf39ms9f5u1ps6v
 ```
 sample response
 
@@ -66,7 +66,7 @@ Verify endpoint allows testing user ECG (similar format as for Enroll endpoint),
 | upload        | String        | CSV file with your ECG data for user which should be authenticated
 
 ```sh
-curl -X POST --form upload=@/home/thavryl/ecg2/tarikTest.csv http://34.198.199.171:1111/verify?apikey=c6qp3p4i6uulf39ms9f5u1ps6v
+curl -X POST --form upload=@/home/user/ecg/testuser.csv http://34.198.199.171:1111/verify?apikey=c6qp3p4i6uulf39ms9f5u1ps6v
 ```
 sample response
 
