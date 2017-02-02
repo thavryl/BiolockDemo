@@ -7,8 +7,8 @@ Biolock API is API interface for training and testing ECG data for authenticatio
 
 Available API:
     - **[Register API key](#register)**
-    - **[Upload data for train](#Train-data)** 
-    - **[Upload data for test](#Test-data)** 
+    - **[Upload data for train](#Train-data)**
+    - **[Upload data for test](#Test-data)**
     - **[Train your network](#Train-network)**
     - **[Clean user ECG data](#Clean-user-ECG)**
     - **[Clean test ECG data](#Clean-test-ECG)**
@@ -21,104 +21,60 @@ Available API:
 
 ## Register
 
-- @name -your name for future contact.
-- @email -your email for future contact.
+| Name          | Type          | Description  |
+| ------------- |:-------------:| -----|
+| name          | String        | Name which will be used for future contact |
+| email         | String        | Email which will be used for future contact |
+
+
+
 ```sh
-$ curl -X POST http://10.128.97.196:1111/register  -d 'name=test&email=test@test.com'
+$ curl -X POST http://34.198.199.171:1111/register  -d 'name=test&email=test@test.com'
 ```
   Sample response
 ```sh
 {"Status":"Ok","APIKey":"c6qp3p4i6uulf39ms9f5u1ps6v"}
 ```
 
-## Train data
- 
-- @apikey -your valid api key. 
-- @upload -CSV file with your ECG data for user which should be authenticated.
- 
+## Enroll user data
+
+Enroll endpoint can be used to train the system to recognize specific user on his/her ECG data. The ECG sample with range of 1000 - 5000 beats is required to get better accuracy. ECG data should be put in CSV file, where each line represent value in millivolts. Sampling rate should be provided as a parameter to the call. The Enroll action can take from 30 seconds to several minutes to complete depending on server load and data size.
+
+
+| Name | Type          | Description  |
+| :-------------|:-------------:|:-----|
+| apikey| String        | Your valid api key. |
+| upload        | String        | CSV file with your ECG data for user which should be authenticated |
+
+
+Sample request
+
 ```sh
 curl -X POST --form upload=@/home/thavryl/ecg2/tarikTrain.csv http://10.128.97.196:1111/addTrainUserData?apikey=c6qp3p4i6uulf39ms9f5u1ps6v
 ```
 sample response
 
- ```sh
-{"Status":"Ok","Message":"File added"}
+```sh
+{"Status":"Ok","Message":"Model trained"}
 ```
 
-## Upload test data
- 
-- @apikey -your valid api key.
-- @upload -CSV file with your ECG data for user which will be tested.
- 
+## Verify test data
+
+Verify endpoint allows testing user ECG (similar format as for Enroll endpoint), as authentication modality. As a result, validation result (yes/no) and matching probability is returned.
+
+
+| Name | Type          | Description  |
+| :-------------|:-------------:|:-----|
+| apikey| String        | Your valid api key. |
+| upload        | String        | CSV file with your ECG data for user which should be authenticated
+
 ```sh
-curl -X POST --form upload=@/home/thavryl/ecg2/tarikTest.csv http://10.128.97.196:1111/addTestUserData?apikey=c6qp3p4i6uulf39ms9f5u1ps6v
+curl -X POST --form upload=@/home/thavryl/ecg2/tarikTest.csv http://34.198.199.171:1111/verify?apikey=c6qp3p4i6uulf39ms9f5u1ps6v
 ```
 sample response
 
 ```sh
-{"Status":"Ok","Message":"File added"}
+{"Status":"Ok","Message":"pass"}  //user didn`t match
+or
+{"Status":"Ok","Message":"fail"}  //user match
 ```
-
-
-## Train model
-  System is trained based on previously uploaded training data 
-- @apikey -your valid api key.
-    
-```sh
-    curl -X POST http://10.128.97.196:1111/trainNetworkForAPIKey?apikey=c6qp3p4i6uulf39ms9f5u1ps6v
-```
-
-- Note training process might take about 1 minute
-
- Sample response 
- 
-```sh
-  {"Status":"Ok","Accuracy":" 0.944599"} 
-```
-
-
-## Clean train data ECG
-- @apikey -your valid api key.
-
-```sh
-  curl -X POST   http://10.128.97.196:1111/cleanTrainUserData?apikey=c6qp3p4i6uulf39ms9f5u1ps6v
-```
-
-Sample response
-
-```sh
- {"Status":"Ok","Message":"Files deleted"}
-```
-
-
-## Clean test data ECG
-- @apikey -your valid api key.
-
-```sh
-  curl -X POST   http://10.128.97.196:1111/cleanTestUserData?apikey=c6qp3p4i6uulf39ms9f5u1ps6v
-```
-
-Sample response
-
-```sh
- {"Status":"Ok","Message":"Files deleted"}
-```
-
-## Validate user  
- Test data is used for validation 
-
-- @apikey -your valid api key.
-
-
-```sh
-    curl -X POST http://10.128.97.196:1111/validateUser?apikey=c6qp3p4i6uulf39ms9f5u1ps6v
-```
-Sample response
-```sh
-   {"Status":"Ok","result":{"predictions":0.97727275,"probability":0.95189613}}
-```
-
-
-
-
-
