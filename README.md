@@ -30,7 +30,7 @@ $ curl -X POST http://34.198.199.171:1111/register  -d 'name=test&email=test@tes
 ```
   Sample response
 ```sh
-{"Status":"Ok","apikey":"c6qp3p4i6uulf39ms9f5u1ps6v","Accuracy":"0.93"}
+{"Status":"Ok","apikey":"c6qp3p4i6uulf39ms9f5u1ps6v","Accuracy":"0.98"}
 ```
 
 ## Enroll
