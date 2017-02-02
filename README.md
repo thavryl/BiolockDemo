@@ -6,14 +6,10 @@ Biolock API is API interface for training and testing ECG data for authenticatio
 
 
 Available API:
-    - **[Register API key](#register)**
-    - **[Upload data for train](#Train-data)**
-    - **[Upload data for test](#Test-data)**
-    - **[Train your network](#Train-network)**
-    - **[Clean user ECG data](#Clean-user-ECG)**
-    - **[Clean test ECG data](#Clean-test-ECG)**
-    - **[Validate test user](#Validate)**
-
+    * [Register API key](#register)
+    * [Enroll user](#Enroll-user-data)
+    * [Verify test data](#Verify-test-data)
+    
 
 
 
