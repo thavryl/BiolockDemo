@@ -71,7 +71,7 @@ curl -X POST --form upload=@/home/user/ecg/testuser.csv http://34.198.199.171:11
 sample response
 
 ```sh
-{"Status":"Ok","Message":"pass","Accuracy":"0.93"}  //user didn`t match
+{"Status":"Ok","Message":"pass","Accuracy":"0.93"}  //user match
 or
-{"Status":"Ok","Message":"fail","Accuracy":"0.23"}  //user match
+{"Status":"Ok","Message":"fail","Accuracy":"0.23"}  //user didn`t match
 ```
